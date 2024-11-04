@@ -25,7 +25,6 @@
     "name": "Entrar",
     "url": "https://app.scanify.com.br"
   },
-  "topAnchor": {},
   "anchors": [
     {
       "name": "Changelog",
@@ -35,7 +34,6 @@
   ],
   "navigation": [
     {
-      "group": "Comece por aqui",
       "pages": [
         "introduction",
         "quickstart",
