@@ -64,13 +64,13 @@
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "Documentação de API",
       "pages": [
         "api-reference/introduction"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Exemplos de Endpoint",
       "pages": [
         "api-reference/endpoint/get",
         "api-reference/endpoint/create",
