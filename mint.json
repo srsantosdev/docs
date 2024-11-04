@@ -27,6 +27,11 @@
   },
   "anchors": [
     {
+      "name": "Introdução",
+      "icon": "pencil",
+      "url": "introduction"
+    },
+    {
       "name": "Changelog",
       "icon": "newspaper",
       "url": "https://scanify.com.br/roadmap"
@@ -34,6 +39,7 @@
   ],
   "navigation": [
     {
+      "group": "Comece por aqui",
       "pages": [
         "introduction",
         "quickstart",
