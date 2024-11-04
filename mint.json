@@ -32,7 +32,7 @@
   "anchors": [
     {
       "name": "Documentação",
-      "icon": "book-open",
+      "icon": "pencil",
       "url": "introduction"
     },
     {
