@@ -27,11 +27,6 @@
   },
   "anchors": [
     {
-      "name": "Documentação",
-      "icon": "book-open-cover",
-      "url": "https://scanify.com.br/docs"
-    },
-    {
       "name": "Changelog",
       "icon": "newspaper",
       "url": "https://scanify.com.br/roadmap"
