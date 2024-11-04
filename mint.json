@@ -28,6 +28,10 @@
   "tabs": [
     {
       "name": "Documentação da API",
+      "url": "introduction"
+    },
+    {
+      "name": "Documentação da API",
       "url": "api-reference"
     }
   ],
