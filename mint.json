@@ -53,12 +53,6 @@
       ]
     },
     {
-      "group": "Início",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
       "group": "Endpoints",
       "pages": [
         "api-reference/endpoint/get",
