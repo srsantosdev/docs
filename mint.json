@@ -46,7 +46,8 @@
       "group": "Comece por aqui",
       "pages": [
         "introduction",
-        "authentication"
+        "authentication",
+        "flow"
       ]
     },
     {
