@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "API de OCR",
+  "name": "Scanify",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -18,39 +18,34 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:hi@scanify.com.br"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Entrar",
+    "url": "https://app.scanify.com.br"
   },
   "tabs": [
     {
-      "name": "API Reference",
+      "name": "Documentação da API",
       "url": "api-reference"
     }
   ],
   "anchors": [
     {
-      "name": "Documentation",
+      "name": "Documentação",
       "icon": "book-open-cover",
       "url": "https://mintlify.com/docs"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
+      "name": "Roadmap",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://scanify.com/roadmap"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Comece por aqui",
       "pages": [
         "introduction",
         "quickstart",
@@ -58,7 +53,7 @@
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Essenciais",
       "pages": [
         "essentials/markdown",
         "essentials/code",
@@ -84,8 +79,8 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "x": "https://x.com/scanify",
+    "github": "https://github.com/scanify",
+    "linkedin": "https://linkedin.com/company/scanify"
   }
 }
