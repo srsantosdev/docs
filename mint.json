@@ -25,16 +25,6 @@
     "name": "Entrar",
     "url": "https://app.scanify.com.br"
   },
-  "tabs": [
-    {
-      "name": "Documentação da API",
-      "url": "introduction"
-    },
-    {
-      "name": "Documentação da API",
-      "url": "api-reference"
-    }
-  ],
   "anchors": [
     {
       "name": "Documentação",
