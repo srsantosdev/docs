@@ -27,12 +27,12 @@
   },
   "topAnchor": {
     "name": "Documentação",
-    "icon": "pencil"
+    "icon": "book-open"
   },
   "anchors": [
     {
       "name": "Documentação",
-      "icon": "pencil",
+      "icon": "book-open",
       "url": "introduction"
     },
     {
