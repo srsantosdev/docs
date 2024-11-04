@@ -46,8 +46,7 @@
       "group": "Comece por aqui",
       "pages": [
         "introduction",
-        "quickstart",
-        "development"
+        "authentication"
       ]
     },
     {
