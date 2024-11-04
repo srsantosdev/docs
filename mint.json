@@ -46,6 +46,9 @@
       "url": "plans"
     }
   ],
+  "search": {
+    "location": "side"
+  },
   "navigation": [
     {
       "group": "Comece por aqui",
