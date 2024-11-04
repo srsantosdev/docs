@@ -25,6 +25,10 @@
     "name": "Entrar",
     "url": "https://app.scanify.com.br"
   },
+  "topAnchor": {
+    "name": "Introdução",
+    "icon": "pencil"
+  },
   "anchors": [
     {
       "name": "Introdução",
