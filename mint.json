@@ -26,12 +26,12 @@
     "url": "https://app.scanify.com.br"
   },
   "topAnchor": {
-    "name": "Introdução",
+    "name": "Documentação",
     "icon": "pencil"
   },
   "anchors": [
     {
-      "name": "Introdução",
+      "name": "Documentação",
       "icon": "pencil",
       "url": "introduction"
     },
@@ -46,8 +46,7 @@
       "group": "Comece por aqui",
       "pages": [
         "introduction",
-        "quickstart",
-        "development"
+        "authentication"
       ]
     },
     {
