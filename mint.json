@@ -29,12 +29,12 @@
     {
       "name": "Documentação",
       "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "url": "https://scanify.com.br/docs"
     },
     {
-      "name": "Roadmap",
+      "name": "Changelog",
       "icon": "newspaper",
-      "url": "https://scanify.com/roadmap"
+      "url": "https://scanify.com.br/roadmap"
     }
   ],
   "navigation": [
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "group": "Exemplos de Endpoint",
+      "group": "Endpoints",
       "pages": [
         "api-reference/endpoint/get",
         "api-reference/endpoint/create",
