@@ -17,7 +17,7 @@
   },
   "topbarLinks": [
     {
-      "name": "Fale com o fundador",
+      "name": "Falar com o Suporte",
       "url": "https://wa.me/5575991206853"
     }
   ],
@@ -34,6 +34,11 @@
       "name": "Documentação",
       "icon": "book-open",
       "url": "introduction"
+    },
+    {
+      "name": "Solicitar acesso",
+      "icon": "key",
+      "url": "https://wa.me/5575991206853"
     }
   ],
   "search": {
@@ -59,17 +64,6 @@
         "api-reference/endpoint/get-ocr-result",
         "api-reference/endpoint/get-usage",
         "api-reference/endpoint/health-check"
-      ]
-    },
-    {
-      "group": "Essenciais",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
       ]
     }
   ],
