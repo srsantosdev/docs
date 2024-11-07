@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Scanify",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/logo.svg",
+    "light": "/logo/logo.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
@@ -34,10 +34,11 @@
       "name": "Documentação",
       "icon": "book-open",
       "url": "introduction"
-    },
+    }
   ],
   "search": {
-    "location": "side"
+    "location": "side",
+    "prompt": "Buscar"
   },
   "navigation": [
     {
@@ -45,15 +46,19 @@
       "pages": [
         "introduction",
         "flow",
-        "authentication"
+        "authentication",
+        "webhook"
       ]
     },
     {
       "group": "Endpoints",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/endpoint/auth",
+        "api-reference/endpoint/ocr-upload",
+        "api-reference/endpoint/get-ocr-status",
+        "api-reference/endpoint/get-ocr-result",
+        "api-reference/endpoint/get-usage",
+        "api-reference/endpoint/health-check"
       ]
     },
     {
