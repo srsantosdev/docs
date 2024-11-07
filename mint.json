@@ -35,27 +35,17 @@
       "icon": "book-open",
       "url": "introduction"
     },
-    {
-      "name": "Changelog",
-      "icon": "newspaper",
-      "url": "https://scanify.com.br/roadmap"
-    },
-    {
-      "name": "Planos e preços",
-      "icon": "lightbulb-dollar",
-      "url": "https://scanify.com.br/plans"
-    }
   ],
   "search": {
     "location": "side"
   },
   "navigation": [
     {
-      "group": "Comece por aqui",
+      "group": "Como funciona",
       "pages": [
         "introduction",
-        "authentication",
-        "flow"
+        "flow",
+        "authentication"
       ]
     },
     {
