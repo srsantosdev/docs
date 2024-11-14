@@ -1,98 +1,97 @@
 ---
 title: 'Fluxo de uso'
-description: 'Learn how to preview changes locally'
+description: 'Aprenda o passo a passo para utilizar o Scanify e processar documentos com OCR'
 icon: "list-radio"
 ---
 
 <Info>
-  **Prerequisite**: Please install Node.js (version 19 or higher) before proceeding.
+  **Pré-requisito**: Antes de iniciar, obtenha sua chave de API na plataforma do Scanify.
 </Info>
 
-Step 1. Install Mintlify on your OS:
+<Steps>
+  <Step title="Obtenha o Token de Acesso">
+    Para autenticar e acessar os endpoints do Scanify, você precisa gerar um token de acesso JWT.
 
-<CodeGroup>
+    ```bash
+    curl -X POST https://api.scanify.com.br/auth/token \
+      -H "Content-Type: application/json" \
+      -d '{
+        "apiKey": "sua-chave-de-api"
+      }'
+    ```
 
-```bash npm
-npm i -g mintlify
-```
+    Esse comando retornará um token que deverá ser incluído no cabeçalho das requisições:
 
-```bash yarn
-yarn global add mintlify
-```
+    ```json
+    {
+      "token": "seu-jwt-token",
+      "expiresIn": 3600
+    }
+    ```
+    <Info>
+      Para mais informações, consulte a [documentação do endpoint de autenticação](https://scanify.com.br/api-reference/endpoint/auth).
+    </Info>
+  </Step>
 
-</CodeGroup>
+  <Step title="Envie Documentos para OCR">
+    Depois de autenticado, envie um documento para ser processado pelo OCR. Esse processo converte o conteúdo visual do documento em texto.
 
-Step 2. Go to the docs are located (where you can find `mint.json`) and run the following command:
+    ```bash
+    curl -X POST https://api.scanify.com.br/ocr/upload \
+      -H "Authorization: Bearer seu-jwt-token" \
+      -F "file=@caminho/do/seu/arquivo.pdf"
+    ```
 
-```bash
-mintlify dev
-```
+    <Warning>
+      **Nota**: Verifique se o arquivo atende aos limites de tamanho do seu plano.
+    </Warning>
+  </Step>
+  <Step title="Consulte o Status do Processamento">
+    Após enviar o documento, você pode verificar o status de processamento usando o jobId retornado ao fazer o upload.
 
-The documentation website is now available at `http://localhost:3000`.
+    ```bash
+    curl -X GET https://api.scanify.com.br/ocr/status/{jobId} \
+      -H "Authorization: Bearer seu-jwt-token"
+    ```
 
-### Custom Ports
+    Os possíveis status são `processing`, `completed` ou `failed`.
+  </Step>
+  <Step title="Obtenha o Resultado do OCR">
+    Assim que o processamento estiver concluído, você pode recuperar o texto extraído do documento usando o `jobId`.
 
-Mintlify uses port 3000 by default. You can use the `--port` flag to customize the port Mintlify runs on. For example, use this command to run in port 3333:
+    ```bash
+    curl -X GET https://api.scanify.com.br/ocr/result/{jobId} \
+      -H "Authorization: Bearer seu-jwt-token"
+    ```
 
-```bash
-mintlify dev --port 3333
-```
+    A resposta incluirá o texto extraído:
 
-You will see an error like this if you try to run Mintlify in a port that's already taken:
+    ```json
+    {
+      "jobId": "123456",
+      "text": "Conteúdo extraído aqui..."
+    }
+    ```
+  </Step>
+</Steps>
 
-```md
-Error: listen EADDRINUSE: address already in use :::3000
-```
+## Configurações de Webhook (Opcional)
 
-## Mintlify Versions
-
-Each CLI is linked to a specific version of Mintlify. Please update the CLI if your local website looks different than production.
-
-<CodeGroup>
-
-```bash npm
-npm i -g mintlify@latest
-```
-
-```bash yarn
-yarn global upgrade mintlify
-```
-
-</CodeGroup>
-
-## Deployment
-
-<Tip>
-  Unlimited editors available under the [Pro
-  Plan](https://mintlify.com/pricing) and above.
-</Tip>
-
-You should see the following if the deploy successfully went through:
+Configure um webhook para receber notificações automáticas ao final do processamento do OCR, evitando a necessidade de consultas repetidas ao status.
 
 <Frame>
   <img src="/images/checks-passed.png" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-## Troubleshooting
+Assim que um documento for processado, o Scanify enviará uma notificação POST para o webhook configurado.
 
-Here's how to solve some common problems when working with the CLI.
+## Resolução de Problemas
 
-<AccordionGroup>
-  <Accordion title="Mintlify is not loading">
-    Update to Node v18. Run `mintlify install` and try again.
-  </Accordion>
-  <Accordion title="No such file or directory on Windows">
-Go to the `C:/Users/Username/.mintlify/` directory and remove the `mint`
-folder. Then Open the Git Bash in this location and run `git clone
-https://github.com/mintlify/mint.git`.
+Veja como resolver alguns problemas comuns ao utilizar a API do Scanify.
 
-Repeat step 3.
-
-  </Accordion>
-  <Accordion title="Getting an unknown error">
-    Try navigating to the root of your device and delete the ~/.mintlify folder.
-    Then run `mintlify dev` again.
-  </Accordion>
+<AccordionGroup> 
+  <Accordion title="Token de Autenticação Expirado"> Gere um novo token de autenticação fazendo uma requisição ao endpoint `/auth/token` com sua chave de API. </Accordion> 
+  <Accordion title="Erro de Formato de Arquivo"> Verifique se o documento atende aos formatos suportados, como PDF, PNG e JPEG, e que o tamanho está dentro do limite permitido pelo seu plano. </Accordion> 
+  <Accordion title="Erro 403 - Sem Acesso ao Processamento em Lote"> O recurso de processamento em lote está disponível apenas para planos avançados. Verifique se o seu plano inclui esse recurso. </Accordion> 
 </AccordionGroup>
 
-Curious about what changed in a CLI version? [Check out the CLI changelog.](/changelog/command-line)

@@ -7,12 +7,12 @@
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#3319B0",
+    "light": "#5D32F5",
+    "dark": "#3319B0",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#3319B0",
+      "to": "#5D32F5"
     }
   },
   "topbarLinks": [
@@ -50,9 +50,16 @@
       "group": "Como funciona",
       "pages": [
         "introduction",
+        "ocr",
         "flow",
         "authentication",
         "webhook"
+      ]
+    },
+    {
+      "group": "Planos",
+      "pages": [
+        "plans"
       ]
     },
     {
