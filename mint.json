@@ -17,13 +17,13 @@
   },
   "topbarLinks": [
     {
-      "name": "Falar com o Suporte",
-      "url": "https://wa.me/5575991206853"
+      "name": "Entrar",
+      "url": "https://app.scanify.com.br/sign-in"
     }
   ],
   "topbarCtaButton": {
-    "name": "Entrar",
-    "url": "https://app.scanify.com.br"
+    "name": "Cadastre-se grátis",
+    "url": "https://app.scanify.com.br/sign-up"
   },
   "topAnchor": {
     "name": "Documentação",
@@ -36,8 +36,8 @@
       "url": "introduction"
     },
     {
-      "name": "Solicitar acesso",
-      "icon": "key",
+      "name": "Falar com suporte",
+      "icon": "comments-question",
       "url": "https://wa.me/5575991206853"
     }
   ],
