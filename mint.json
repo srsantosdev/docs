@@ -7,12 +7,12 @@
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#3319B0",
-    "light": "#5D32F5",
-    "dark": "#3319B0",
+    "primary": "#CEFF1A",
+    "light": "#DEFF53",
+    "dark": "#CEFF1A",
     "anchors": {
-      "from": "#3319B0",
-      "to": "#5D32F5"
+      "from": "#CEFF1A",
+      "to": "#DEFF53"
     }
   },
   "topbarLinks": [
@@ -69,8 +69,7 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/scanify",
-    "github": "https://github.com/scanify",
-    "linkedin": "https://linkedin.com/company/scanify"
+    "x": "https://x.com/scanifybr",
+    "linkedin": "https://linkedin.com/company/scanify.br"
   }
 }
