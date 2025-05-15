@@ -1,0 +1,84 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "Scanify",
+  "description": "Extraia e valide dados de documentos com uma única API.",
+  "logo": {
+    "dark": "/logo/logo.svg",
+    "light": "/logo/logo.svg"
+  },
+  "favicon": "/favicon.svg",
+  "styling": {
+    "eyebrows": "section",
+    "codeblocks": "dark"
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": true
+  },
+  "theme": "mint",
+  "search": {
+    "prompt": "Pesquise por um tópico ou palavra chave..."
+  },
+  "background": {
+    "decoration": "windows",
+    "color": {
+      "dark": "#000000"
+    }
+  },
+  "colors": {
+    "primary": "#CEFF1A",
+    "dark": "#CEFF1A",
+    "light": "#CEFF1A"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Entrar",
+        "href": "https://scanify.com.br"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Cadastre-se",
+      "href": "https://scanify.com.br/sign-up"
+    }
+  },
+  "navigation": {
+    "anchors": [
+      {
+        "anchor": "Como funciona",
+        "icon": "book-open",
+        "pages": [
+          "introduction",
+          "ocr",
+          "flow",
+          "authentication",
+          "webhook"
+        ]
+      },
+      {
+        "anchor": "Documentação da API",
+        "icon": "server",
+        "pages": [
+          "api-reference/endpoint/auth",
+          "api-reference/endpoint/ocr-upload",
+          "api-reference/endpoint/get-ocr-status",
+          "api-reference/endpoint/get-ocr-result",
+          "api-reference/endpoint/get-usage",
+          "api-reference/endpoint/health-check"
+        ]
+      },
+      {
+        "anchor": "SDKs",
+        "icon": "code",
+        "pages": [
+          "sdk/coming-soon"
+        ]
+      },
+      {
+        "anchor": "Blog",
+        "href": "https://external-link.com/blog"
+      }
+    ]
+  }
+}

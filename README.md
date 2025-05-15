@@ -1,32 +1,57 @@
-# Mintlify Starter Kit
-
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
-
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
-
-### Development
-
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
-
-```
-npm i -g mintlify
-```
-
-Run the following command at the root of your documentation (where mint.json is)
-
-```
-mintlify dev
-```
-
-### Publishing Changes
-
-Install our Github App to auto propagate changes from your repo to your deployment. Changes will be deployed to production automatically after pushing to the default branch. Find the link to install on your dashboard. 
-
-#### Troubleshooting
-
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with `mint.json`
+"topbarCtaButton": {
+      "name": "Entrar",
+      "url": "https://app.scanify.com.br/sign-in"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Cadastre-se grátis",
+    "url": "https://scanify.com.br/sign-up",
+    "arrow": true
+  },
+  "topAnchor": {
+    "name": "Documentação",
+    "icon": "book-open"
+  },
+  "anchors": [
+    {
+      "name": "Documentação",
+      "icon": "book-open",
+      "url": "introduction"
+    },
+    {
+      "name": "Falar com suporte",
+      "icon": "comments-question",
+      "url": "https://wa.me/5575991206853"
+    }
+  ],
+  "search": {
+    "location": "side",
+    "prompt": "Buscar"
+  },
+  "navigation": [
+    {
+      "group": "Como funciona",
+      "pages": [
+        "introduction",
+        "ocr",
+        "flow",
+        "authentication",
+        "webhook"
+      ]
+    },
+    {
+      "group": "Endpoints",
+      "pages": [
+        "api-reference/endpoint/auth",
+        "api-reference/endpoint/ocr-upload",
+        "api-reference/endpoint/get-ocr-status",
+        "api-reference/endpoint/get-ocr-result",
+        "api-reference/endpoint/get-usage",
+        "api-reference/endpoint/health-check"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "x": "https://x.com/scanifybr",
+    "linkedin": "https://linkedin.com/company/scanify.br"
+  }
