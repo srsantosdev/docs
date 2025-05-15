@@ -3,3 +3,6 @@
   font-weight: 600;
 }
 
+.list-none a > div > svg {
+  background-color: #000000;
+}
