@@ -36,7 +36,7 @@
                   "file": {
                     "type": "string",
                     "format": "binary",
-                    "description": "O arquivo do documento a ser processado para OCR."
+                    "description": "O arquivo do documento a ser processado"
                   }
                 }
               }
