@@ -1,93 +1,84 @@
 ---
-title: 'Fluxo de uso'
-description: 'Aprenda o passo a passo para utilizar o Scanify e processar documentos com OCR'
+title: 'Fluxo de Uso'
+description: 'Aprenda o passo a passo para utilizar o Scanify e processar documentos com OCR e validação automática'
 icon: "list-radio"
 ---
 
 <Info>
-  **Pré-requisito**: Antes de iniciar, obtenha sua chave de API na plataforma do Scanify.
+  **Pré-requisito**: Antes de começar, gere sua chave de API na plataforma do Scanify.
 </Info>
 
 <Steps>
-  <Step title="Obtenha o Token de Acesso">
-    Para autenticar e acessar os endpoints do Scanify, você precisa gerar um token de acesso JWT.
+  <Step title="Autentique-se com sua chave de API">
+    Todas as requisições à API do Scanify exigem uma chave de autenticação no cabeçalho `Authorization`.
+
+    Exemplo:
 
     ```bash
-    curl -X POST https://api.scanify.com.br/auth/token \
-      -H "Content-Type: application/json" \
-      -d '{
-        "apiKey": "sua-chave-de-api"
-      }'
+    -H "Authorization: Bearer SUA_API_KEY"
     ```
 
-    Esse comando retornará um token que deverá ser incluído no cabeçalho das requisições:
-
-    ```json
-    {
-      "token": "seu-jwt-token",
-      "expiresIn": 3600
-    }
-    ```
     <Info>
-      Para mais informações, consulte a [documentação do endpoint de autenticação](https://scanify.com.br/api-reference/endpoint/auth).
+      Você pode copiar sua chave diretamente na área de onboarding da plataforma.
     </Info>
   </Step>
 
-  <Step title="Envie Documentos para OCR">
-    Depois de autenticado, envie um documento para ser processado pelo OCR. Esse processo converte o conteúdo visual do documento em texto.
+  <Step title="Envie um documento para processamento">
+    Faça uma requisição para o endpoint principal `/extract` com o documento a ser processado.
+
+    A requisição deve usar o método `POST` e o formato `multipart/form-data`.
 
     ```bash
-    curl -X POST https://api.scanify.com.br/ocr/upload \
-      -H "Authorization: Bearer seu-jwt-token" \
-      -F "file=@caminho/do/seu/arquivo.pdf"
+    curl -X POST https://api.scanify.com.br/extract \
+      -H "Authorization: Bearer SUA_API_KEY" \
+      -F "file=@boleto.pdf" \
+      -F "callback_url=https://seusistema.com/webhook"
     ```
+
+    - O campo `file` deve conter o PDF ou imagem do documento.
+    - O campo `callback_url` é **opcional**, mas recomendado para receber o resultado automaticamente.
 
     <Warning>
-      **Nota**: Verifique se o arquivo atende aos limites de tamanho do seu plano.
+      **Importante**: verifique se o documento atende aos formatos suportados (PDF, JPG, PNG) e aos limites do seu plano.
     </Warning>
   </Step>
-  <Step title="Consulte o Status do Processamento">
-    Após enviar o documento, você pode verificar o status de processamento usando o jobId retornado ao fazer o upload.
 
-    ```bash
-    curl -X GET https://api.scanify.com.br/ocr/status/{jobId} \
-      -H "Authorization: Bearer seu-jwt-token"
-    ```
+  <Step title="Receba o resultado via Webhook">
+    Se você enviou um `callback_url`, o Scanify enviará o resultado e a validação automaticamente assim que o processamento for concluído.
 
-    Os possíveis status são `processing`, `completed` ou `failed`.
-  </Step>
-  <Step title="Obtenha o Resultado do OCR">
-    Assim que o processamento estiver concluído, você pode recuperar o texto extraído do documento usando o `jobId`.
-
-    ```bash
-    curl -X GET https://api.scanify.com.br/ocr/result/{jobId} \
-      -H "Authorization: Bearer seu-jwt-token"
-    ```
-
-    A resposta incluirá o texto extraído:
+    Exemplo de payload de resposta:
 
     ```json
     {
-      "jobId": "123456",
-      "text": "Conteúdo extraído aqui..."
+      "request_id": "abc123",
+      "document_type": "BOLETO",
+      "status": "partial_success",
+      "fields": {
+        "barcode": { "value": "2379...", "error": null },
+        "due_date": { "value": null, "error": "Formato inválido" }
+      },
+      "processed_at": "2025-05-15T21:00:00Z"
     }
     ```
+
+    <Info>
+      Se o seu endpoint retornar erro, o Scanify tentará reenviar por um tempo limitado.
+    </Info>
   </Step>
 </Steps>
 
-## Configurações de Webhook (Opcional)
+---
 
-Configure um webhook para receber notificações automáticas ao final do processamento do OCR, evitando a necessidade de consultas repetidas ao status.
+## Consultar histórico manualmente (opcional)
 
-Assim que um documento for processado, o Scanify enviará uma notificação POST para o webhook configurado.
+Caso não utilize webhook, você pode acompanhar suas requisições diretamente pelo painel da plataforma, na seção **Atividade**. Lá é possível ver o status de cada documento processado e baixar os resultados manualmente.
+
+---
 
 ## Resolução de Problemas
 
-Veja como resolver alguns problemas comuns ao utilizar a API do Scanify.
-
-<AccordionGroup> 
-  <Accordion title="Token de Autenticação Expirado"> Gere um novo token de autenticação fazendo uma requisição ao endpoint `/auth/token` com sua chave de API. </Accordion> 
-  <Accordion title="Erro de Formato de Arquivo"> Verifique se o documento atende aos formatos suportados, como PDF, PNG e JPEG, e que o tamanho está dentro do limite permitido pelo seu plano. </Accordion> 
-  <Accordion title="Erro 403 - Sem Acesso ao Processamento em Lote"> O recurso de processamento em lote está disponível apenas para planos avançados. Verifique se o seu plano inclui esse recurso. </Accordion> 
+<AccordionGroup>
+  <Accordion title="Erro 401 - Unauthorized"> Verifique se está enviando o header `Authorization: Bearer SUA_API_KEY` corretamente. </Accordion>
+  <Accordion title="Erro 403 - Conta Inativa"> Sua conta pode estar desativada. Verifique seu painel ou entre em contato com o suporte. </Accordion>
+  <Accordion title="Documento não retornou resultado"> Confirme se seu `callback_url` está acessível publicamente e aceitando requisições POST. </Accordion>
 </AccordionGroup>
-

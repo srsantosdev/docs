@@ -1,0 +1,41 @@
+---
+title: Tipos de Documentos
+description: Veja os tipos de documentos suportados atualmente pela API Scanify e os campos extraídos de cada um
+icon: 'files'
+---
+
+<img
+  className="block"
+  src="/images/hero.svg"
+  alt="Hero"
+/>
+
+O Scanify atualmente suporta extração e validação de dados para:
+
+## Boleto Bancário
+
+Campos extraídos:
+
+| Campo           | Descrição                          |
+|------------------|-------------------------------------|
+| `amount`         | Valor do boleto                    |
+| `due_date`       | Data de vencimento                 |
+| `barcode`        | Código de barras completo          |
+| `digitable_line` | Linha digitável (com ou sem pontos)|
+
+---
+
+## NF-e (Nota Fiscal Eletrônica)
+
+Campos extraídos:
+
+| Campo          | Descrição                           |
+|----------------|--------------------------------------|
+| `access_key`   | Chave de acesso da nota fiscal       |
+| `issuer_cnpj`  | CNPJ do emissor                      |
+| `issue_date`   | Data de emissão                      |
+| `total_amount` | Valor total da nota fiscal           |
+
+<Info>
+  Novos tipos de documentos estão em desenvolvimento e serão anunciados na documentação.
+</Info>

@@ -1,0 +1,37 @@
+---
+title: Validação Automática
+description: Veja como funciona a validação automática dos dados extraídos dos documentos
+icon: 'circle-check'
+---
+
+## Validação automática de campos
+
+Após extrair os dados de um documento, o Scanify valida automaticamente os campos com base em regras brasileiras.
+
+---
+
+## Exemplo de resultado com erro
+
+```json
+"due_date": {
+  "value": null,
+  "error": "Formato inválido"
+}
+```
+
+## Possíveís status da resposta
+
+| Status           | Significado                                                |
+|------------------|-----------------------------------------------------------|
+| `success`        | Todos os campos extraídos e validados com sucesso         |
+| `partial_success`| Alguns campos extraídos, outros inválidos                 |
+| `failed`         | O documento não pôde ser processado ou retornou erro geral|
+
+## Tipos de validação aplicados
+
+- Datas (formato, validade)
+- Valores (normalização para number)
+- Códigos (ex: chave de acesso NF-e, CNPJ)
+- Formatação (linha digitável, código de barras)
+
+<Info> Todos os erros são retornados diretamente no payload de resposta, no campo `error` de cada item. </Info>

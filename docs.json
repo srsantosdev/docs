@@ -3,10 +3,10 @@
   "name": "Scanify",
   "description": "Extraia e valide dados de documentos com uma única API.",
   "logo": {
-    "dark": "/logo/logo.svg",
-    "light": "/logo/logo.svg"
+    "dark": "/logo/scanify-logo.svg",
+    "light": "/logo/scanify-logo.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/scanify-favicon.svg",
   "styling": {
     "eyebrows": "section",
     "codeblocks": "dark"
@@ -40,7 +40,7 @@
     "primary": {
       "type": "button",
       "label": "Cadastre-se",
-      "href": "https://scanify.com.br/sign-up"
+      "href": "https://scanify.com.br/register"
     }
   },
   "navigation": {
@@ -50,10 +50,14 @@
         "icon": "book-open",
         "pages": [
           "introduction",
-          "ocr",
           "flow",
           "authentication",
-          "webhook"
+          "callback-url",
+          "document-types",
+          "response-payload",
+          "validation",
+          "limits",
+          "examples/index"
         ]
       },
       {
@@ -77,7 +81,7 @@
       },
       {
         "anchor": "Blog",
-        "href": "https://external-link.com/blog"
+        "href": "https://scanify.com.br/blog"
       }
     ]
   }

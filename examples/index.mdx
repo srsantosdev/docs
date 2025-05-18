@@ -1,0 +1,39 @@
+---
+title: Exemplos de Integração
+description: Exemplos de código prontos para você testar a API do Scanify em diferentes linguagens
+icon: 'square-code'
+---
+
+## Node.js (axios)
+
+```ts
+import axios from 'axios';
+import FormData from 'form-data';
+import fs from 'fs';
+
+const form = new FormData();
+form.append('file', fs.createReadStream('./boleto.pdf'));
+form.append('callback_url', 'https://meusistema.com/webhook');
+
+const response = await axios.post('https://api.scanify.com.br/extract', form, {
+  headers: {
+    ...form.getHeaders(),
+    Authorization: 'Bearer SUA_API_KEY'
+  }
+});
+```
+
+## Python (requests)
+
+```py
+import requests
+
+files = {'file': open('boleto.pdf', 'rb')}
+data = {'callback_url': 'https://meusistema.com/webhook'}
+headers = {'Authorization': 'Bearer SUA_API_KEY'}
+
+r = requests.post('https://api.scanify.com.br/extract', files=files, data=data, headers=headers)
+print(r.text)
+```
+
+<Info> Em breve: exemplos com n8n, Make, Zapier e outras plataformas low-code.</Info>

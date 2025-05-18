@@ -1,0 +1,43 @@
+---
+title: Payload de Resposta
+description: Entenda como interpretar o payload enviado pelo Scanify após o processamento de um documento
+icon: 'box-check'
+---
+
+<img
+  className="block"
+  src="/images/hero.svg"
+  alt="Hero"
+/>
+
+Após o processamento do documento, o Scanify envia o resultado para o `callback_url` informado na requisição.
+
+---
+
+## Exemplo de payload:
+
+```json
+{
+  "request_id": "abc123",
+  "document_type": "BOLETO",
+  "status": "partial_success",
+  "fields": {
+    "amount": { "value": 129.90 },
+    "due_date": { "value": null, "error": "Formato inválido" },
+    "barcode": { "value": "237901..." }
+  },
+  "processed_at": "2025-05-15T21:00:00Z"
+}
+```
+
+## Campos explicados
+
+- `request_id`: ID único da requisição
+- `document_type`: Tipo do documento processado (BOLETO, NFE, etc)
+- `status`: Pode ser `success`, `partial_success` ou `failed`
+- `fields`: Objeto com cada campo extraído e possível erro
+- `processed_at`: Data/hora em UTC
+
+<Info> 
+  A estrutura do payload é sempre a mesma, independente do tipo de documento. 
+</Info> 

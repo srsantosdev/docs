@@ -1,0 +1,73 @@
+---
+title: 'Callback URL'
+description: 'Entenda como receber automaticamente os resultados da API Scanify após o processamento de documentos'
+icon: "link"
+---
+
+<Info>
+  O Scanify permite que você receba o resultado do processamento assim que ele for concluído, usando um `callback_url` informado em cada requisição.
+</Info>
+
+## O que é o `callback_url`?
+
+O `callback_url` é um parâmetro opcional que você envia junto com o documento para processar. Ele define para onde o Scanify enviará o resultado da extração e validação, assim que o documento for processado.
+
+---
+
+## Como usar
+
+Basta incluir o parâmetro `callback_url` no corpo da requisição para o endpoint `/extract`.
+
+```bash
+curl -X POST https://api.scanify.com.br/extract \
+  -H "Authorization: Bearer SUA_API_KEY" \
+  -F "file=@boleto.pdf" \
+  -F "callback_url=https://seusistema.com/webhook"
+```
+
+## Payload de resposta 
+
+Assim que o processamento for concluído, o Scanify enviará um POST para a URL especificada, com o seguinte formato:
+
+```json
+{
+  "request_id": "abc123",
+  "document_type": "BOLETO",
+  "status": "success",
+  "fields": {
+    "amount": { "value": 129.90 },
+    "due_date": { "value": "2024-06-20" },
+    "barcode": { "value": "23791..." }
+  },
+  "processed_at": "2025-05-15T21:00:00Z"
+}
+```
+
+<Info>
+  **Dica**: Replique esse payload em ambiente de teste para validar o seu endpoint antes de ir para produção.
+</Info>
+
+## Boas práticas para o callback
+
+- Certifique-se de que sua URL:
+  - Está acessível publicamente
+  - Aceita requisições POST com Content-Type: application/json
+  - Retorna HTTP 200 para confirmar o recebimento
+
+Você pode usar ferramentas como [Webhook.cool](https://webhook.cool/) para testar localmente.
+
+## O que acontece se a URL falhar?
+
+O Scanify tentará reenviar o resultado por um tempo limitado, com retentativas espaçadas automaticamente.
+
+<Warning> 
+  Se o seu endpoint retornar status HTTP diferente de 200, o sistema entende que houve uma falha e entrará em modo de retry automático por um curto período. 
+</Warning>
+
+## Erros comuns e como resolver
+
+<AccordionGroup> 
+  <Accordion title="Não recebo o resultado"> Certifique-se de que o `callback_url` foi enviado corretamente na requisição e que está acessível externamente.</Accordion> 
+  <Accordion title="Meu endpoint retorna 500"> Corrija qualquer exceção no seu backend e lembre-se de retornar `200 OK` mesmo que você armazene o resultado de forma assíncrona.</Accordion> 
+  <Accordion title="Recebo vários POSTs repetidos"> Isso acontece quando seu endpoint não responde com sucesso. Garanta que seu serviço finalize a requisição com um código `200`.</Accordion> 
+</AccordionGroup> 

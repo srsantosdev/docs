@@ -1,51 +1,51 @@
 ---
 title: 'Autenticação'
-description: 'Saiba como autenticar-se na API do Scanify para acessar os endpoints protegidos'
+description: 'Entenda como autenticar-se na API do Scanify usando sua chave de API'
 icon: 'shield-keyhole'
 ---
 
 <Info>
-  **Pré-requisito**: Antes de iniciar, obtenha sua chave de API na plataforma do Scanify.
+  **Pré-requisito**: Gere sua chave de API no painel da plataforma do Scanify. Ela será usada para autenticar todas as requisições.
 </Info>
 
-## Obtenha o Token de Acesso JWT
+## Como autenticar
 
-Para acessar os endpoints protegidos do Scanify, é necessário gerar um token de acesso JWT usando a sua chave de API.
-
+Todas as requisições à API do Scanify exigem autenticação via header `Authorization`, no formato **Bearer**.
 
 ```bash
-curl -X POST https://api.scanify.com.br/auth/token \
-  -H "Content-Type: application/json" \
-  -d '{
-    "apiKey": "sua-chave-de-api"
-  }'
+-H "Authorization: Bearer SUA_CHAVE_DE_API"
 ```
 
 <Warning>
-  **Nota**: O token tem um tempo de expiração. Após esse período, você precisará solicitar um novo token.
+  **Nota**: A chave de API é única e permanente para sua conta (a menos que você regenere).
 </Warning>
 
-## Autentique-se nas Requisições
+## Exemplo com cURL
+
 
 Inclua o token JWT no header `Authorization` de cada requisição aos endpoints protegidos da API:
 
 ```bash
-curl -X GET https://api.scanify.com.br/ocr/upload \
-  -H "Authorization: Bearer seu-jwt-token"
+curl -X POST https://api.scanify.com.br/extract \
+  -H "Authorization: Bearer sk_live_abc123..." \
+  -F "file=@nfe.pdf" \
+  -F "callback_url=https://seudominio.com/webhook"
 ```
 
-## Renovação do Token
+## Boas práticas
 
-Para renovar o token, basta refazer o passo 1 sempre que o token expirar. Recomenda-se configurar o sistema para capturar o tempo de expiração (`expiresIn`) e gerar um novo token quando o atual estiver próximo de expirar.
+- Nunca exponha sua chave de API em ambientes públicos ou código client-side.
+- Prefira armazená-la em variáveis de ambiente.
+- Se necessário, você pode regenerar a chave diretamente na plataforma.
 
 ## Resolução de Problemas
 
 Confira abaixo algumas soluções para problemas comuns relacionados à autenticação na API do Scanify:
 
 <AccordionGroup> 
-  <Accordion title="Erro 401 - Unauthorized"> Esse erro indica que o token JWT está ausente, incorreto, ou expirado. Verifique se o cabeçalho `Authorization` está sendo enviado corretamente e, se necessário, gere um novo token. </Accordion> 
-  <Accordion title="Token Expirado"> O token JWT tem uma validade limitada (especificada no campo `expiresIn` da resposta). Para resolver, gere um novo token através do endpoint `/auth/token`. </Accordion> 
-  <Accordion title="Acesso Negado ao Endpoint"> Certifique-se de que está utilizando o token JWT correto para os endpoints que requerem autenticação e que o cabeçalho `Authorization` está no formato adequado: `Bearer seu-jwt-token`. </Accordion> 
+  <Accordion title="Erro 401 - Unauthorized"> Esse erro indica que a chave de API está ausente ou incorreta. Verifique se o header `Authorization` está no formato correto: `Bearer SUA_CHAVE_DE_API`. </Accordion> 
+  <Accordion title="403 - Conta inativa"> Sua conta pode estar desativada ou com uso suspenso. Verifique seu status no painel da plataforma. </Accordion> 
+  <Accordion title="Erro 429 - Limite excedido"> Você atingiu o número máximo de documentos no seu plano atual. Faça upgrade ou aguarde a renovação do ciclo mensal. </Accordion> 
 </AccordionGroup>
 
 <Info>
