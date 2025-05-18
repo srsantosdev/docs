@@ -70,14 +70,14 @@
           {
             "group": "Integrações",
             "pages": [
-              "examples/index",
+              "examples/examples",
               "sdk/coming-soon"
             ]
           },
           {
             "group": "Histórico",
             "pages": [
-              "changelog/index"
+              "changelog/changelog"
             ]
           }
         ]
