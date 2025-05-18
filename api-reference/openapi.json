@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API OCR Scanify",
+    "title": "API Scanify",
     "version": "1.0.0",
-    "description": "API do Scanify para processamento de OCR. Esta API permite que os usuários autentiquem, façam upload de arquivos para OCR, verifiquem o status dos processamentos, recuperem resultados de OCR e visualizem estatísticas de uso.",
+    "description": "API do Scanify para extração de dados de documentos. Esta API permite que os usuários façam upload de arquivos para extração de dados de documentos.",
     "contact": {
       "name": "Suporte Scanify",
       "url": "https://scanify.com.br/support",
@@ -32,11 +32,33 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
+                "required": ["file", "documentType", "callbackUrl"],
                 "properties": {
                   "file": {
                     "type": "string",
                     "format": "binary",
                     "description": "O arquivo do documento a ser processado"
+                  },
+                  "documentType": {
+                    "type": "string",
+                    "description": "Tipo do documento a ser processado",
+                    "enum": ["CNH", "BOLETO", "NFE", "CPF", "RG", "CONTRATO"],
+                    "example": "CNH"
+                  },
+                  "callbackUrl": {
+                    "type": "string",
+                    "description": "URL para receber notificações de callback quando o processamento for concluído"
+                  },
+                  "referenceId": {
+                    "type": "string",
+                    "description": "ID de referência opcional para rastreamento do processamento",
+                    "nullable": true
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Qualquer informação/metadados adicional que o usuário queira associar ao documento, será retornado no callback",
+                    "additionalProperties": true,
+                    "nullable": true
                   }
                 }
               }
@@ -51,10 +73,16 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "jobId": {
+                    "requestId": {
                       "type": "string",
-                      "description": "ID único para o processamento de OCR.",
-                      "example": "49dcfe13ea1a53bdf2b38530d504ac0e84bcd317ee6e1320aa6285342c4e4c95"
+                      "format": "uuid",
+                      "description": "ID único da requisição de processamento",
+                      "example": "123e4567-e89b-12d3-a456-426614174000"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Status atual do processamento",
+                      "example": "IN_PROGRESS"
                     }
                   }
                 }
