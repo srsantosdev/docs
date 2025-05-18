@@ -1,0 +1,44 @@
+---
+title: Changelog
+description: Acompanhe todas as atualizações e melhorias feitas na API Scanify
+icon: "clock-rotate-left"
+---
+
+<img
+  className="block"
+  src="/images/hero.svg"
+  alt="Hero"
+/>
+
+Todas as atualizações da API, validações, campos suportados e melhorias visuais estarão listadas aqui.
+
+---
+
+## 📅 2025-05-16
+
+### ➕ Adicionado
+- Página de onboarding com exemplo funcional de requisição
+- Suporte ao parâmetro `callback_url` para envio automático do resultado
+- Validação automática de campos usando regras brasileiras
+- Normalização automática de datas (ISO) e valores numéricos (float)
+
+---
+
+## 📅 2025-05-15
+
+### 🛠 Melhorias
+- Interface da área de atividade redesenhada com filtros por status, busca e tipo
+- Novo layout do painel com métricas, histórico e detalhamento de requisições
+
+### 🐞 Corrigido
+- Bug na validação de `digitable_line` com pontos e espaços
+- Problema de consistência no campo `amount` com valores em vírgula
+
+---
+
+## 📅 2025-05-10
+
+### 🚀 Lançamento Inicial
+- API funcional com extração de dados de **boletos** e **notas fiscais eletrônicas (NF-e)**
+- Validação automática com retorno por campo
+- Geração de chave de API e painel com histórico básico

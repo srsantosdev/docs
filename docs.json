@@ -46,37 +46,48 @@
   "navigation": {
     "anchors": [
       {
-        "anchor": "Como funciona",
+        "anchor": "Guia Técnico",
         "icon": "book-open",
-        "pages": [
-          "introduction",
-          "flow",
-          "authentication",
-          "callback-url",
-          "document-types",
-          "response-payload",
-          "validation",
-          "limits",
-          "examples/index"
+        "groups": [
+          {
+            "group": "Como funciona",
+            "pages": [
+              "introduction",
+              "flow",
+              "authentication",
+              "callback-url"
+            ]
+          },
+          {
+            "group": "Documentos e Dados",
+            "pages": [
+              "document-types",
+              "response-payload",
+              "validation",
+              "limits"
+            ]
+          },
+          {
+            "group": "Integrações",
+            "pages": [
+              "examples/index",
+              "sdk/coming-soon"
+            ]
+          },
+          {
+            "group": "Histórico",
+            "pages": [
+              "changelog/index"
+            ]
+          }
         ]
       },
       {
-        "anchor": "Documentação da API",
+        "anchor": "Referência de API",
         "icon": "server",
         "pages": [
-          "api-reference/endpoint/auth",
           "api-reference/endpoint/ocr-upload",
-          "api-reference/endpoint/get-ocr-status",
-          "api-reference/endpoint/get-ocr-result",
-          "api-reference/endpoint/get-usage",
           "api-reference/endpoint/health-check"
-        ]
-      },
-      {
-        "anchor": "SDKs",
-        "icon": "code",
-        "pages": [
-          "sdk/coming-soon"
         ]
       },
       {

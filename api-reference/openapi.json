@@ -7,7 +7,7 @@
     "contact": {
       "name": "Suporte Scanify",
       "url": "https://scanify.com.br/support",
-      "email": "support@scanify.com"
+      "email": "suporte@scanify.com.br"
     }
   },
   "servers": [
@@ -17,41 +17,10 @@
     }
   ],
   "paths": {
-    "/auth/token": {
+    "/extract": {
       "post": {
-        "summary": "Obter um token de autenticação",
-        "description": "Gera um token de acesso usando uma chave de API. Este token é necessário para realizar requisições autenticadas nos endpoints de OCR.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "apiKey": {
-                    "type": "string",
-                    "description": "A chave de API fornecida ao usuário.",
-                    "example": "apiscanify_MC55Y3V2bmNvMW11bw==YXBpc2NhbmlmeV8="
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Autenticação bem-sucedida"
-          },
-          "401": {
-            "description": "Não autorizado - Chave de API inválida"
-          }
-        }
-      }
-    },
-    "/ocr/upload": {
-      "post": {
-        "summary": "Fazer upload de um documento para processamento de OCR",
-        "description": "Faz o upload de um documento para processamento de OCR. Requer autenticação via token Bearer.",
+        "summary": "Extração de dados de documentos",
+        "description": "Faz a extração de dados de documentos. Requer autenticação via token Bearer.",
         "security": [
           {
             "bearerAuth": []
@@ -94,131 +63,6 @@
           },
           "400": {
             "description": "Requisição inválida - Arquivo não fornecido ou inválido"
-          }
-        }
-      }
-    },
-    "/ocr/status/{jobId}": {
-      "get": {
-        "summary": "Verificar o status de um processamento OCR",
-        "description": "Recupera o status atual de um processamento OCR.",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "jobId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "ID único para o processamento de OCR.",
-            "example": "49dcfe13ea1a53bdf2b38530d504ac0e84bcd317ee6e1320aa6285342c4e4c95"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Status do processamento de OCR",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "O status atual do processamento (e.g., 'processando', 'completado', 'falhou')"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Não encontrado - ID do processamento não existe"
-          }
-        }
-      }
-    },
-    "/ocr/result/{jobId}": {
-      "get": {
-        "summary": "Recuperar o resultado de OCR para um processamento concluído",
-        "description": "Obtém o resultado de um processamento de OCR após a conclusão.",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "jobId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "ID único para o processamento.",
-            "example": "49dcfe13ea1a53bdf2b38530d504ac0e84bcd317ee6e1320aa6285342c4e4c95"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Resultado do OCR recuperado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "result": {
-                      "type": "string",
-                      "description": "O texto extraído do documento ou outros dados de OCR."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Não encontrado - ID do processamento não existe"
-          }
-        }
-      }
-    },
-    "/usage": {
-      "get": {
-        "summary": "Recuperar informações de uso",
-        "description": "Recupera informações sobre limites de uso da API, uso atual e créditos restantes.",
-        "responses": {
-          "200": {
-            "description": "Informações de uso recuperadas com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "usage": {
-                      "type": "object",
-                      "properties": {
-                        "totalCredits": {
-                          "type": "integer",
-                          "description": "Número total de créditos disponíveis."
-                        },
-                        "usedCredits": {
-                          "type": "integer",
-                          "description": "Número de créditos utilizados."
-                        },
-                        "remainingCredits": {
-                          "type": "integer",
-                          "description": "Número de créditos restantes."
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
           }
         }
       }
