@@ -42,8 +42,8 @@
                   "documentType": {
                     "type": "string",
                     "description": "Tipo do documento a ser processado",
-                    "enum": ["CNH", "BOLETO", "NFE", "CPF", "RG", "CONTRATO"],
-                    "example": "CNH"
+                    "enum": ["BOLETO", "NFE"],
+                    "example": "NFE"
                   },
                   "callbackUrl": {
                     "type": "string",
@@ -82,7 +82,12 @@
                     "status": {
                       "type": "string",
                       "description": "Status atual do processamento",
-                      "example": "IN_PROGRESS"
+                      "example": "in_progress"
+                    },
+                    "excessPrice": {
+                      "type": "number",
+                      "description": "Informa o cliente se haverá cobrança de excedente, caso o plano seja compatível",
+                      "example": 81
                     }
                   }
                 }
